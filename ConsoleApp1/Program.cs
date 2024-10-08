@@ -18,7 +18,29 @@ public class Program
 
             for (int i = 0; i < numEstudiantes; i++)
             {
-                Console.WriteLine($"Ingrese la nota del estudiante {i + 1}:");
-                double nota = Convert.ToDouble(Console.ReadLine());
+                double sumaNotas = 0;
+
+                Console.WriteLine($"Ingrese las 5 notas del estudiante {i + 1}:");
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.WriteLine($"Nota {j + 1}:");
+                    sumaNotas += Convert.ToDouble(Console.ReadLine());
+                }
+
+                double promedio = sumaNotas / 5;
+                string categoria;
+
+                if (promedio >= 4.5)
+                    categoria = "Excelente";
+                else if (promedio >= 4.0)
+                    categoria = "Sobresaliente";
+                else if (promedio >= 3.5)
+                    categoria = "Bueno";
+                else
+                    categoria = "Insuficiente";
+
+                Console.WriteLine($"El estudiante {i + 1} tiene un promedio de {promedio:F2} y está en la categoría {categoria}");
             }
+        }
+    }
 }

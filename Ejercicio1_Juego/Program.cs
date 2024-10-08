@@ -18,13 +18,20 @@ public class Program
         {
             Console.WriteLine("Bienvenido a Adivina el número");
             Console.WriteLine();
-            Console.Write("Ingrese el numero de participantes de 2 hasta 4: ");
-            int numParticipantes = Convert.ToInt32(Console.ReadLine());
-
-            if (numParticipantes < 2 | numParticipantes > 4)
+            int numParticipantes;
+            while (true)
             {
-                Console.Write("Numero de participantes no valido, ingrese un numero entre 2 y 4");
-                return;
+                Console.Write("Ingrese el número de jugadores de 2 a 4: ");
+                string entrada = Console.ReadLine();
+                if (int.Parse(entrada) >= 2 && int.Parse(entrada) <= 4)
+                {
+                    numParticipantes = int.Parse(entrada);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Número de jugadores inválido. Debe ser entre 2 y 4.");
+                }
             }
             int rangoNumeros;
             switch (numParticipantes)
@@ -69,7 +76,7 @@ public class Program
             }
             Console.Write("¿Desea jugar de nuevo? (s/n): ");
             string respuesta = Console.ReadLine().ToLower();
-
+            Console.WriteLine();
             if (respuesta != "s")
             {
                 jugarDeNuevo = false;

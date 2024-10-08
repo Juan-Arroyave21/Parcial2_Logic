@@ -18,7 +18,7 @@ public class Program
         {
             Console.WriteLine("Bienvenido a Adivina el número");
             Console.WriteLine();
-            Console.Write("Ingrese el numero de participantes de 2 hasta 4");
+            Console.Write("Ingrese el numero de participantes de 2 hasta 4: ");
             int numParticipantes = Convert.ToInt32(Console.ReadLine());
 
             if (numParticipantes < 2 | numParticipantes > 4)
@@ -66,6 +66,18 @@ public class Program
                 }
 
                 jugadorActual = (jugadorActual % numParticipantes) + 1;
+            }
+            Console.Write("¿Desea jugar de nuevo? (s/n): ");
+            string respuesta = Console.ReadLine().ToLower();
+
+            if (respuesta != "s")
+            {
+                jugarDeNuevo = false;
+                Console.WriteLine("¡Gracias por jugar, hasta luego!");
+            }
+            else
+            {
+                Console.Clear();
             }
         }
     }

@@ -13,56 +13,60 @@ public class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Bienvenido a Adivina el número");
-        Console.Write("Ingrese el numero de participantes de 2 hasta 4");
-        int numParticipantes = Convert.ToInt32(Console.ReadLine());
-
-        if (numParticipantes < 2 | numParticipantes > 4)
+        bool jugarDeNuevo = true;
+        while (jugarDeNuevo)
         {
-            Console.Write("Numero de participantes no valido, ingrese un numero entre 2 y 4");
-            return;
-        }
-        int rangoNumeros;
-        switch (numParticipantes)
-        {
-            case 2:
-                rangoNumeros = 50;
-                break;
-            case 3:
-                rangoNumeros = 100;
-                break;
-            case 4:
-                rangoNumeros = 200;
-                break;
-            default:
-                throw new Exception("Error inesperado");
-        }
-        Random random = new Random();
-        int numeroAleatorio = random.Next(0, rangoNumeros + 1);
+            Console.WriteLine("Bienvenido a Adivina el número");
+            Console.WriteLine();
+            Console.Write("Ingrese el numero de participantes de 2 hasta 4");
+            int numParticipantes = Convert.ToInt32(Console.ReadLine());
 
-        int jugadorActual = 1;
-        while (true)
-        {
-            Console.WriteLine($"Turno del jugador {jugadorActual}");
-            Console.Write("Ingrese un número: ");
-            int numeroIngresado = Convert.ToInt32(Console.ReadLine());
-
-            if (numeroIngresado < numeroAleatorio)
+            if (numParticipantes < 2 | numParticipantes > 4)
             {
-                Console.WriteLine("MAYOR");
+                Console.Write("Numero de participantes no valido, ingrese un numero entre 2 y 4");
+                return;
             }
-            else if (numeroIngresado > numeroAleatorio)
+            int rangoNumeros;
+            switch (numParticipantes)
             {
-                Console.WriteLine("MENOR");
+                case 2:
+                    rangoNumeros = 50;
+                    break;
+                case 3:
+                    rangoNumeros = 100;
+                    break;
+                case 4:
+                    rangoNumeros = 200;
+                    break;
+                default:
+                    throw new Exception("Error inesperado");
             }
-            else
-            {
-                Console.WriteLine("¡HAS GANADO!");
-                break;
-            }
+            Random random = new Random();
+            int numeroAleatorio = random.Next(0, rangoNumeros + 1);
 
-            jugadorActual = (jugadorActual % numParticipantes) + 1;
+            int jugadorActual = 1;
+            while (true)
+            {
+                Console.WriteLine($"Es el turno del jugador {jugadorActual}");
+                Console.Write("Ingrese un número: ");
+                int numeroIngresado = Convert.ToInt32(Console.ReadLine());
+
+                if (numeroIngresado < numeroAleatorio)
+                {
+                    Console.WriteLine("MAYOR");
+                }
+                else if (numeroIngresado > numeroAleatorio)
+                {
+                    Console.WriteLine("MENOR");
+                }
+                else
+                {
+                    Console.WriteLine("¡HAS GANADO!");
+                    break;
+                }
+
+                jugadorActual = (jugadorActual % numParticipantes) + 1;
+            }
         }
-
     }
 }
